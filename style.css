@@ -10,81 +10,11 @@ body {
   margin: 0;
 }
 
-.container {
-  text-align: center;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-/* === Flipbook base (desktop: doppia pagina A4) === */
-#flipbook {
-  width: 842px;   /* larghezza A4 */
-  height: 595px;  /* altezza A4 */
-  margin: 20px auto;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
-}
-
-#flipbook img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* === Pulsanti sotto === */
-.controls {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 10px;
-}
-
-button, .home {
-  background: #333;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 16px;
-}
-
-button:hover, .home:hover {
-  background: #555;
-}
-
-/* === Responsive per mobile === */
-@media (max-width: 768px) {
-  #flipbook {
-    width: 100vw;                      /* tutta la larghezza dello schermo */
-    height: calc(100vw * 1.414);       /* altezza proporzionata A4 */
-  }
-
-  #flipbook img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;                /* mantiene proporzioni senza tagli */
-  }
-
-  button, .home {
-    padding: 8px 14px;
-    font-size: 14px;
-  }
-}
-
-
-.flipbook-container {
-  position: relative;
-  width: fit-content;   /* si adatta alla larghezza del flipbook */
-  margin: 0 auto;
-}
-/* Wrapper che contiene sfondo e flipbook */
+/* Wrapper flipbook + sfondo */
 .flipbook-wrapper {
   position: relative;
   width: 100%;
-  min-height: 100vh; /* almeno tutta l’altezza della finestra */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -98,40 +28,112 @@ button:hover, .home:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* riempie tutta la finestra senza distorsioni */
-  z-index: 0;        /* sotto tutto */
+  object-fit: cover;
+  z-index: 0;
 }
 
 /* Contenitore flipbook + logo */
 .flipbook-container {
   position: relative;
-  z-index: 1; /* sopra lo sfondo */
+  width: fit-content; /* si adatta al flipbook */
+  margin: 0 auto;
+  z-index: 1;
+  text-align: center;
 }
 
 /* Logo centrale */
 .logo-central {
   position: absolute;
-  top: -50px;      /* distanza dal flipbook */
+  top: -50px;
   left: 50%;
   transform: translateX(-50%);
-  width: 200px;
+  width: 150px;
   pointer-events: none;
   z-index: 10;
 }
 
-/* Flipbook */
+/* === Flipbook === */
 #flipbook {
-  z-index: 1;
+  width: 842px;   /* desktop A4 */
+  height: 595px;  /* desktop A4 */
+  margin: 20px auto;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
   position: relative;
+  z-index: 1;
 }
 
+#flipbook img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* mantiene proporzioni corrette */
+  display: block;
+}
 
+/* === Pulsanti moderni sotto il flipbook === */
+.flipbook-controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.flipbook-controls button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 16px 24px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
 
 .flipbook-controls button i {
-  font-size: 20px; /* icona più grande */
+  font-size: 28px;
   vertical-align: middle;
 }
-.flipbook-controls button {
-  padding: 12px 18px; /* pulsanti più “soft” */
-  border-radius: 8px;
+
+.flipbook-controls button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+/* === Scritta proprietà Febax sotto i pulsanti === */
+.flipbook-footer {
+  text-align: center;
+  font-size: 12px;
+  color: #555;
+  margin-top: 5px;
+  font-family: Arial, sans-serif;
+}
+
+/* === Responsive per mobile === */
+@media (max-width: 768px) {
+  #flipbook {
+    width: auto;            /* larghezza calcolata in JS */
+    height: 100vh;          /* altezza tutta la finestra */
+    max-width: 100vw;       /* non superare la larghezza schermo */
+  }
+
+  #flipbook img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .flipbook-controls button {
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+
+  .flipbook-controls button i {
+    font-size: 24px;
+  }
+
+  .logo-central {
+    width: 120px;
+    top: -40px;
+  }
 }
