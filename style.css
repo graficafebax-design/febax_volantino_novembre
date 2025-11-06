@@ -1,0 +1,137 @@
+/* === Stile generale === */
+body {
+  background: #f0f0f0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* === Flipbook base (desktop: doppia pagina A4) === */
+#flipbook {
+  width: 842px;   /* larghezza A4 */
+  height: 595px;  /* altezza A4 */
+  margin: 20px auto;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+#flipbook img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* === Pulsanti sotto === */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+button, .home {
+  background: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+button:hover, .home:hover {
+  background: #555;
+}
+
+/* === Responsive per mobile === */
+@media (max-width: 768px) {
+  #flipbook {
+    width: 100vw;                      /* tutta la larghezza dello schermo */
+    height: calc(100vw * 1.414);       /* altezza proporzionata A4 */
+  }
+
+  #flipbook img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;                /* mantiene proporzioni senza tagli */
+  }
+
+  button, .home {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+}
+
+
+.flipbook-container {
+  position: relative;
+  width: fit-content;   /* si adatta alla larghezza del flipbook */
+  margin: 0 auto;
+}
+/* Wrapper che contiene sfondo e flipbook */
+.flipbook-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; /* almeno tutta l’altezza della finestra */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Sfondo */
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* riempie tutta la finestra senza distorsioni */
+  z-index: 0;        /* sotto tutto */
+}
+
+/* Contenitore flipbook + logo */
+.flipbook-container {
+  position: relative;
+  z-index: 1; /* sopra lo sfondo */
+}
+
+/* Logo centrale */
+.logo-central {
+  position: absolute;
+  top: -50px;      /* distanza dal flipbook */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Flipbook */
+#flipbook {
+  z-index: 1;
+  position: relative;
+}
+
+
+
+.flipbook-controls button i {
+  font-size: 20px; /* icona più grande */
+  vertical-align: middle;
+}
+.flipbook-controls button {
+  padding: 12px 18px; /* pulsanti più “soft” */
+  border-radius: 8px;
+}
